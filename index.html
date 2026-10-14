@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>HackPack Game</title>
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  iframe { border: 0; width: 100vw; height: 100vh; display: block; }
+</style>
+</head>
+<body>
+<!-- Juego: proyecto-individual-2026 (MakeCode Arcade en GitHub Pages) -->
+<iframe id="game" allowfullscreen
+  src="https://elzoyo.github.io/proyecto-individual-2026/?nofooter=1"></iframe>
+
+<script>
+  // El HackPack vuelve a modo mouse a los 21 s, así que se re-activa modo flechas cada 5 s.
+  // En el navegador de escritorio pywebview no existe: el try/catch evita errores.
+  function arrowMode() {
+    try { pywebview.api.inputArrow({}); } catch (e) {}
+  }
+  arrowMode();
+  setInterval(arrowMode, 5000);
+
+  // Que el iframe tenga el foco para recibir flechas / Espacio / Enter.
+  var f = document.getElementById('game');
+  f.addEventListener('load', function () { f.focus(); });
+  document.addEventListener('click', function () { f.focus(); });
+</script>
+</body>
+</html>
